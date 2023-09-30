@@ -13,7 +13,6 @@ module.exports = {
     handle: async ({
         isSticker,
         sendWaitReply,
-        sendWaitReact,
         downloadSticker,
         baileysMessage,
         sendStickerFromFile,
@@ -21,22 +20,19 @@ module.exports = {
         if (!isSticker) {
             throw new InvalidParameterError("Você precisa enviar um sticker!");
         }
-
-        await sendWaitReact();
-        await sendWaitReply(`Função em manutenção`);
         
-        // const inputPath = await downloadSticker(baileysMessage, `${TEMP_DIR}/${baileysMessage?.messageTimestamp}.webp`);
-        // const outputPath = path.resolve(`${TEMP_DIR}/${baileysMessage?.messageTimestamp}.png`);
-
-        // exec(`ffmpeg -i ${inputPath} ${outputPath}`, async (error) => {
-        //     if (error) {
-        //         console.log(error);
-        //         throw new Error(error);
-        //     }
-
-        //     await sendWaitReply();
-        //     await sendStickerFromFile(outputPath);
-        //     fs.unlinkSync(inputPath, outputPath);
-        // });
+        const inputPath = await downloadSticker(baileysMessage, `${TEMP_DIR}/${baileysMessage?.messageTimestamp}.webp`);
+        const outputPath = path.resolve(`${TEMP_DIR}/${baileysMessage?.messageTimestamp}.png`);
+    
+        exec(`ffmpeg -i ${inputPath} ${outputPath}`, async (error) => {
+            if (error) {
+                console.log(error);
+                throw new Error(error);
+            }
+        
+            await sendWaitReply();
+            await sendStickerFromFile(outputPath);
+            fs.unlinkSync(inputPath, outputPath);
+        });
     },
 };

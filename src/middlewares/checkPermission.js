@@ -1,8 +1,16 @@
 const { JSON_DIR, DEV_ID } = require('../config');
+const { solankService } = require('../services/solankService');
 const fs = require('fs');
 
-exports.checkPermission = async ({ type, bot, userJid, remoteJid }) => {
-    if (type === "member" || "menu") {
+exports.checkPermission = async ({ 
+    type, 
+    bot, 
+    userJid, 
+    remoteJid, 
+    baileysMessage,  
+    sendSuccessReply }) => {
+
+    if (type === "member" || type === "menu") {
         return true;
     }
 
@@ -20,9 +28,17 @@ exports.checkPermission = async ({ type, bot, userJid, remoteJid }) => {
     const isOwner = participant.id === owner || participant.admin === "superadmin";
     const isAdmin = participant.admin === "admin";
 
-    const premiumData = JSON.parse(fs.readFileSync(`${JSON_DIR}/user/${userJid.split('@')[0]}.json`));
+    try {
+        const userData = fs.readFileSync(`${JSON_DIR}/user/${userJid.split('@')[0]}.json`, 'utf8');
+        const premiumData = JSON.parse(userData);
 
-    const isPremium = premiumData.premium.some((item) => item.memberToJid === userJid && item.premium);
+        isPremium = premiumData.premium;
+        userCoins = premiumData.coins || 0;
+    } catch (error) {
+        console.log(error);
+        isPremium = false;
+        userCoins = 0;
+    }
 
     if (type === "dev") {
         return isDev;
@@ -37,7 +53,23 @@ exports.checkPermission = async ({ type, bot, userJid, remoteJid }) => {
     }
 
     if (type === "premium") {
-        return isPremium || isDev;
+        if (isPremium && userCoins >= 5) {
+            return true;
+        }
+        
+        if (!isPremium && userCoins >= 5) {
+            userCoins -= 5;
+
+            const userJsonPath = `${JSON_DIR}/user/${userJid.split('@')[0]}.json`;
+            const userJsonData = fs.readFileSync(userJsonPath, 'utf8');
+            const userData = JSON.parse(userJsonData);
+            userData.coins = userCoins;
+            fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2), 'utf8');
+
+            await sendSuccessReply(solankService(userData, 5 ,baileysMessage));
+        }
+
+        return isPremium || userCoins >= 5 || isDev;
     }
 
     return false;
