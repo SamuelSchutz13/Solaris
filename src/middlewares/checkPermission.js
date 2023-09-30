@@ -1,16 +1,12 @@
-const { JSON_DIR, DEV_ID } = require('../config');
-const { solankService } = require('../services/solankService');
+const { DEV_ID, JSON_DIR } = require('../config');
 const fs = require('fs');
 
 exports.checkPermission = async ({ 
     type, 
     bot, 
     userJid, 
-    remoteJid, 
-    baileysMessage,  
-    sendSuccessReply }) => {
-
-    if (type === "member" || type === "menu") {
+    remoteJid }) => {
+    if (type === "member" || "menu") {
         return true;
     }
 
@@ -24,20 +20,16 @@ exports.checkPermission = async ({
         return false;
     }
 
-    const isDev = participant.id === `${DEV_ID}`;
-    const isOwner = participant.id === owner || participant.admin === "superadmin";
+    const isDev = `${DEV_ID}`;
+    const isOwner = userJid.replace(/^@/, "") === owner || participant.admin === "superadmin";
     const isAdmin = participant.admin === "admin";
 
-    try {
-        const userData = fs.readFileSync(`${JSON_DIR}/user/${userJid.split('@')[0]}.json`, 'utf8');
-        const premiumData = JSON.parse(userData);
+    let isPremium = false; 
+    const userJSONFile = (`${JSON_DIR}/json/${userJid.replace(/^@/, "")}.json`);
 
-        isPremium = premiumData.premium;
-        userCoins = premiumData.coins || 0;
-    } catch (error) {
-        console.log(error);
-        isPremium = false;
-        userCoins = 0;
+    if (fs.existsSync(userJSONFile)) {
+        const userData = JSON.parse(fs.readFileSync(userJSONFile));
+        isPremium = userData.premium.some((item) => item.memberToJid === userJid.replace(/^@/, "") && item.premium);
     }
 
     if (type === "dev") {
@@ -53,23 +45,7 @@ exports.checkPermission = async ({
     }
 
     if (type === "premium") {
-        if (isPremium && userCoins >= 5) {
-            return true;
-        }
-        
-        if (!isPremium && userCoins >= 5) {
-            userCoins -= 5;
-
-            const userJsonPath = `${JSON_DIR}/user/${userJid.split('@')[0]}.json`;
-            const userJsonData = fs.readFileSync(userJsonPath, 'utf8');
-            const userData = JSON.parse(userJsonData);
-            userData.coins = userCoins;
-            fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2), 'utf8');
-
-            await sendSuccessReply(solankService(userData, 5 ,baileysMessage));
-        }
-
-        return isPremium || userCoins >= 5 || isDev;
+        return isPremium;
     }
 
     return false;
