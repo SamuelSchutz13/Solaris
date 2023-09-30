@@ -43,7 +43,7 @@ exports.checkPermission = async ({ type, bot, userJid, remoteJid }) => {
     }
 
     if (type === "premium") {
-        return isPremium || isDev;
+        return isPremium;
     }
 
     return false;
