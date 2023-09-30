@@ -1,1 +1,1 @@
-# Solar-s-bot
+# Solaris-bot
