@@ -1,12 +1,8 @@
-const { DEV_ID, JSON_DIR } = require('../config');
+const { JSON_DIR, DEV_ID } = require('../config');
 const fs = require('fs');
 
-exports.checkPermission = async ({ 
-    type, 
-    bot, 
-    userJid, 
-    remoteJid }) => {
-    if (type === "member" || "menu") {
+exports.checkPermission = async ({ type, bot, userJid, remoteJid }) => {
+    if (type === "member" || type === "menus") {
         return true;
     }
 
@@ -20,16 +16,18 @@ exports.checkPermission = async ({
         return false;
     }
 
-    const isDev = `${DEV_ID}`;
-    const isOwner = userJid.replace(/^@/, "") === owner || participant.admin === "superadmin";
+    const isDev = participant.id === `${DEV_ID}`;
+    const isOwner = participant.id === owner || participant.admin === "superadmin";
     const isAdmin = participant.admin === "admin";
 
     let isPremium = false; 
-    const userJSONFile = (`${JSON_DIR}/json/${userJid.replace(/^@/, "")}.json`);
+    const userJsonPath = `${JSON_DIR}/user/${userJid.split('@')[0]}.json`;
 
-    if (fs.existsSync(userJSONFile)) {
-        const userData = JSON.parse(fs.readFileSync(userJSONFile));
-        isPremium = userData.premium.some((item) => item.memberToJid === userJid.replace(/^@/, "") && item.premium);
+    if (fs.existsSync(userJsonPath)) {
+        const userData = JSON.parse(fs.readFileSync(userJsonPath));
+        if (userData.premium && userData.premium === true) {
+            isPremium = true;
+        }
     }
 
     if (type === "dev") {
