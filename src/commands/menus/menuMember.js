@@ -49,6 +49,7 @@ module.exports = {
 ▢ • ${getRandomPrefix()}personalizedChance
 ▢ • ${getRandomPrefix()}sticker
 ▢ • ${getRandomPrefix()}sticker-emoji
+▢ • ${getRandomPrefix()}surname
 ▢ • ${getRandomPrefix()}to-image
 ▢ • ${getRandomPrefix()}top3
 ▢ • ${getRandomPrefix()}user

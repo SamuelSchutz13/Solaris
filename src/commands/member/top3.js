@@ -24,7 +24,7 @@ module.exports = {
             return;
         }
 
-        if(!args) {
+        if(!args[0]) {
             await sendWarningReact();
             await sendWarningReply("Você precisa informar o que deseja saber o top3");
         }

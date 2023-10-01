@@ -24,10 +24,9 @@ module.exports = {
 
         const currentTime = new Date().getTime();
         const uptimeInSeconds = Math.floor((currentTime - botStartTime) / 1000); 
-        const upTime = `${Math.floor(uptimeInSeconds / 3600)}h ${Math.floor((uptimeInSeconds % 3600) / 60)}m ${uptimeInSeconds % 60}s`;
+        const upTime = formatUptime(uptimeInSeconds);
 
         const pingInfos = (`
-        
 *⏱️ Ativo Por:* ${upTime}
 *📡 Tempo de Resposta:* ${formattedPingTime}
         `);
@@ -43,4 +42,15 @@ function formatPingTime(pingTime) {
     } else {
         return `${(pingTime / 1000).toFixed(3)}ms`;
     }
+}
+
+function formatUptime(uptimeInSeconds) {
+    const days = Math.floor(uptimeInSeconds / 86400);
+    const hours = Math.floor((uptimeInSeconds % 86400) / 3600);
+    const minutes = Math.floor((uptimeInSeconds % 3600) / 60);
+    const seconds = uptimeInSeconds % 60;
+
+    const uptimeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    
+    return uptimeString;
 }

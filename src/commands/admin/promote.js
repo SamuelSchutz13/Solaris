@@ -60,7 +60,7 @@ module.exports = {
                 );
             } catch (error) {
                 console.error(error);
-                imageBuffer = path.resolve(`${IMAGES_DIR}/user/default.jpg`);
+                imageBuffer = path.resolve(`${IMAGES_DIR}/default.jpg`);
                 await bot.sendMessage(remoteJid, 
                     { image: { url: imageBuffer }, caption: `O membro @${memberToPromoteNumber} foi promovido a administrador no grupo ${groupMetaData.subject}`, mentions: [memberToPromoteJid] },
                     { quoted: JSON.parse(JSON.stringify(baileysMessage)) },

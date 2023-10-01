@@ -60,7 +60,7 @@ module.exports = {
                 );
             } catch (error) {
                 console.error(error);
-                imageBuffer = await path.resolve(`${IMAGES_DIR}/user/default.jpg`);
+                imageBuffer = await path.resolve(`${IMAGES_DIR}/default.jpg`);
                 await bot.sendMessage(remoteJid, 
                     { image: { url: imageBuffer }, caption: `O administrador @${memberToDemoteNumber} foi despromovido a membro no grupo ${groupMetaData.subject}`, mentions: [memberToDemoteJid] },
                     { quoted: JSON.parse(JSON.stringify(baileysMessage)) },

@@ -149,6 +149,10 @@ module.exports = {
 ▢ Transforma emoji em sticker
 ▢ Uso: ${getRandomPrefix()}sticker-emoji 🤖
 ▢
+▢ *Surname?*
+▢ Adiciona um apelido no membro desejado
+▢ Uso: ${getRandomPrefix()}surname <apelido>
+▢
 ▢ *Top3?*
 ▢ Mostra o top3 de alguma coisa no grupo
 ▢ Uso: ${getRandomPrefix()}top3 <mensagem>

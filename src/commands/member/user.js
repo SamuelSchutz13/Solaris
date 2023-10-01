@@ -28,6 +28,7 @@ module.exports = {
         const userJsonPath = `${JSON_DIR}/user/${memberNameNumber}.json`;
         let userPremium = false;
         let userCoins = 0;
+        let userSurname = baileysMessage?.pushName; // Inicialmente, use o pushName como apelido.
 
         try {
             if (fs.existsSync(userJsonPath)) {
@@ -39,6 +40,12 @@ module.exports = {
 
                 if (data.coins) {
                     userCoins = data.coins; 
+                }
+
+                if (data.surname) {
+                    userSurname = data.surname; 
+                } else {
+                    userSurname = baileysMessage?.pushName; 
                 }
             }
         } catch (error) {
@@ -61,7 +68,7 @@ module.exports = {
         const userInfos = (`
 ╭─「@${memberNameNumber} | ${userPremium ? "🅿️" : ""}」
 │ 
-│─ *Apelido:* ${baileysMessage?.pushName}  
+│─ *Apelido:* ${userSurname}  
 │─ *Telefone:* +${memberNameNumber}
 │─ *Grupo*: ${groupMetadata?.subject}
 │─ *Cargo no Grupo:* ${participantRole}
