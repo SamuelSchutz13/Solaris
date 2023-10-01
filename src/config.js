@@ -5,7 +5,7 @@ exports.PREFIX2 = "#";
 exports.PREFIX3 = "/";
 
 exports.BOT_EMOJI = "🤖";
-exports.BOT_VERSION = "Alpha 1.1.0";
+exports.BOT_VERSION = "1.2.0";
 exports.BOT_NAME = "Solaris Bot";
 exports.BOT_NUMBER = "37259022954";
 
@@ -22,6 +22,7 @@ exports.JSON_DIR = path.resolve(__dirname, "..", "assets", "json");
 exports.TIMEOUT_IN_MILLISECONDS_BY_EVENT = 700;
 
 exports.PAGES = 10; 
+exports.COINS_COST = 5;
 
 exports.GPT_API_KEY = "pk-MArOXaCaFgKfKbksrTzAQsOrCBXpjArdhHUwBqcVxrSIpBDx";
 exports.OPENWEATHER_API_KEY = "7d751384326d2e9757e6549a5ef56a2b";
