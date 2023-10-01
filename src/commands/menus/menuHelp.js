@@ -85,10 +85,6 @@ module.exports = {
 ▢ Escolhe um membro aleatório do grupo
 ▢ Uso: ${getRandomPrefix()}russianRoulette
 ▢
-▢ *Surname?*
-▢ Adiciona um apelido no membro desejado
-▢ Uso: ${getRandomPrefix()}surname <apelido>
-▢
 ▢ *TitleGroup?*
 ▢ Altera o nome do grupo
 ▢ Uso: ${getRandomPrefix()}titleGroup Nome Grupo
@@ -152,6 +148,10 @@ module.exports = {
 ▢ *Sticker-Emoji?*
 ▢ Transforma emoji em sticker
 ▢ Uso: ${getRandomPrefix()}sticker-emoji 🤖
+▢
+▢ *Surname?*
+▢ Adiciona um apelido no membro desejado
+▢ Uso: ${getRandomPrefix()}surname <apelido>
 ▢
 ▢ *Top3?*
 ▢ Mostra o top3 de alguma coisa no grupo
