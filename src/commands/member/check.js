@@ -37,7 +37,7 @@ module.exports = {
 
         const userJsonPath = path.join(`${JSON_DIR}/user/${memberToNumber}.json`);
         let userData = {};
-        let debitCoins =  Math.floor(Math.random() * 5) + 1;
+        let debitCoins =  Math.floor(Math.random() * 20) + 1;
 
         if (fs.existsSync(userJsonPath)) {
             const jsonData = fs.readFileSync(userJsonPath, "utf-8");
