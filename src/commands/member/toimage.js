@@ -15,7 +15,7 @@ module.exports = {
         sendWaitReply,
         downloadSticker,
         baileysMessage,
-        sendStickerFromFile,
+        sendImageFromFile,
     }) => {
         if (!isSticker) {
             throw new InvalidParameterError("Você precisa enviar um sticker!");
@@ -29,10 +29,11 @@ module.exports = {
                 console.log(error);
                 throw new Error(error);
             }
-        
+
             await sendWaitReply();
-            await sendStickerFromFile(outputPath);
-            fs.unlinkSync(inputPath, outputPath);
+            await sendImageFromFile(outputPath);
+            fs.unlinkSync(inputPath);
+            fs.unlinkSync(outputPath);
         });
     },
 };

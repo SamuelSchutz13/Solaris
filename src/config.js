@@ -5,7 +5,7 @@ exports.PREFIX2 = "#";
 exports.PREFIX3 = "/";
 
 exports.BOT_EMOJI = "🤖";
-exports.BOT_VERSION = "1.2.0";
+exports.BOT_VERSION = "1.0.0";
 exports.BOT_NAME = "Solaris Bot";
 exports.BOT_NUMBER = "37259022954";
 
