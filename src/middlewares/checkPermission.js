@@ -20,7 +20,11 @@ exports.checkPermission = async ({
         (participant) => participant.id === userJid
     );
 
-    if (!participant) {
+    if(!participant) {
+        return false;
+    }
+
+    if (remoteJid === userJid) {
         return false;
     }
 
