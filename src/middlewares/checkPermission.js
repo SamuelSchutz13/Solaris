@@ -20,7 +20,7 @@ exports.checkPermission = async ({
         (participant) => participant.id === userJid
     );
 
-    if (!participant) {
+    if (participants.length < 3 || !participant) {
         return false;
     }
 
