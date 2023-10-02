@@ -13,7 +13,6 @@ module.exports = {
     handle: async ({
         bot,
         isImage,
-        isText,
         isVideo,
         remoteJid,
         baileysMessage,
@@ -23,7 +22,7 @@ module.exports = {
     }) => {               
         const date = new Date();
         
-        if (!isImage && !isVideo && !isText) {
+        if (!isImage && !isVideo) {
             throw new InvalidParameterError(
                 "Você precisa marcar uma imagem/gif/video ou responder a uma imagem/gif/video"
             );
@@ -65,10 +64,7 @@ module.exports = {
             const haveSecondsRule = seconds <= sizeInSeconds;
 
             if (!haveSecondsRule) {
-                fs.unlinkSync(inputPath);
-                await sendErrorReply(`O vídeo que você enviou tem mais de ${sizeInSeconds} segundos!
-
-Envie um vídeo menor!`);
+                await sendErrorReply(`O vídeo que você enviou tem mais de ${sizeInSeconds} segundos! Envie um vídeo menor!`);
                 return;
             }
 
