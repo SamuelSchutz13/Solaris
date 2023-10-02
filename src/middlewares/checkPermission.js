@@ -25,7 +25,7 @@ exports.checkPermission = async ({
     }
 
     if (remoteJid === userJid) {
-        return false;
+        throw new Error("Não é possível executar esse comando no privado!");
     }
 
     const isDev = participant.id === `${DEV_ID}`;
