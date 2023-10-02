@@ -19,10 +19,6 @@ exports.checkPermission = async ({
         return true;
     }
 
-    if(!participant) {
-        return false;
-    }
-
     const isDev = participant.id === `${DEV_ID}`;
     const isOwner = participant.id === owner || participant.admin === "superadmin";
     const isAdmin = participant.admin === "admin";
