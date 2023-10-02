@@ -10,21 +10,16 @@ exports.checkPermission = async ({
     sendReply,
     baileysMessage,
 }) => {
-    if (type === "member" || type === "menus") {
-        return true;
-    }
-
     const { participants, owner } = await bot.groupMetadata(remoteJid);
-
     const participant = participants.find(
         (participant) => participant.id === userJid
     );
 
-    if(!participant) {
-        return false;
+    if (participant !== undefined && (type === "member" || type === "menus")) {
+        return true;
     }
 
-    if (remoteJid === userJid) {
+    if(!participant) {
         return false;
     }
 
