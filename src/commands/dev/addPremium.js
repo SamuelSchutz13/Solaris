@@ -43,8 +43,8 @@ module.exports = {
             throw new DangerError("Você não pode me promover a Premium!");
         }
 
-        // Calcular a data de expiração do premium em um mês
-        const premiumExpirationDate = moment().add(1, 'months').format('DD/MM/YYYY [às] HH:mm:ss');
+        const currentDate = moment();
+        const premiumExpirationDate = currentDate.add(1, 'month').format('DD/MM/YYYY [às] HH:mm:ss');
         let imageBuffer;
 
         await sendWaitReply();
@@ -75,7 +75,6 @@ module.exports = {
             userData.premium = true;
         }
 
-        const currentDate = new Date();
         const premiumExpiration = moment(userData.premiumExpirationDate, 'DD/MM/YYYY [às] HH:mm:ss');
         if (premiumExpiration < currentDate) {
             userData.premium = false;
