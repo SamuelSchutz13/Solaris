@@ -22,7 +22,6 @@ module.exports = {
         baileysMessage,
         sendWaitReply,
         sendWarningReply,
-        sendWarningReact,
         sendSuccessReact,
     }) => {
         if (!args.length && !isReply) {
@@ -44,6 +43,7 @@ module.exports = {
             throw new DangerError("Você não pode me promover a Premium!");
         }
 
+        // Calcular a data de expiração do premium em um mês
         const premiumExpirationDate = moment().add(1, 'months').format('DD/MM/YYYY [às] HH:mm:ss');
         let imageBuffer;
 
@@ -81,7 +81,7 @@ module.exports = {
             userData.premium = false;
         }
 
-        if (userData.premium && userData.premium.memberToJid === memberToJid) {
+        if (userData.premium && userData.memberToJid === memberToJid) {
             await sendWarningReact();
             await sendWarningReply(`O usuário ${memberToJid} já é premium.`);
         }
@@ -90,7 +90,7 @@ module.exports = {
         userData.memberToNumber = memberToNumber;
         userData.premiumExpirationDate = premiumExpirationDate;
         userData.premium = true;
-        userData.coins = userData.coins,
+        userData.coins = userData.coins; 
 
         fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2));
     },
