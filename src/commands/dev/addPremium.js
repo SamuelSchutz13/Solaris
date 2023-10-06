@@ -21,6 +21,7 @@ module.exports = {
         remoteJid,
         baileysMessage,
         sendWaitReply,
+        sendWarningReact,
         sendWarningReply,
         sendSuccessReact,
     }) => {
@@ -30,14 +31,31 @@ module.exports = {
 
         if (!args.length && !isReply) {
             const groupJsonPath = path.join(`${JSON_DIR}/group/${remoteJid}.json`);
-
-            if (!fs.existsSync(groupJsonPath)) {
-                const groupData = {
-                    premiumExpirationDate: premiumExpirationDate,
-                    premium: true,
-                };
-                fs.writeFileSync(groupJsonPath, JSON.stringify(groupData, null, 2));
+            
+            let groupData = {};
+            if (fs.existsSync(groupJsonPath)) {
+                const jsonData = fs.readFileSync(groupJsonPath , 'utf-8');
+                groupData = JSON.parse(jsonData);
+                groupData.remoteJid = remoteJid,
+                groupData.premiumExpirationDate = premiumExpirationDate;
+                groupData.premium = true;
             }
+
+            const premiumExpiration = moment(groupData.premiumExpirationDate, 'DD/MM/YYYY [às] HH:mm:ss');
+            if (premiumExpiration < currentDate) {
+                groupData.premium = false;
+            }
+
+            if (groupData.premium && groupData.remoteJid === remoteJid) {
+                await sendWarningReact();
+                await sendWarningReply(`O grupo ${remoteJid} já é premium.`);
+            }
+
+            groupData.remoteJid = remoteJid;
+            groupData.premiumExpirationDate = premiumExpirationDate;
+            groupData.premium = true;
+
+            fs.writeFileSync(groupJsonPath, JSON.stringify(groupData, null, 2));
 
             await sendWaitReply();
             await sendSuccessReact();

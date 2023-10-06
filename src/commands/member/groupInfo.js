@@ -22,13 +22,12 @@ module.exports = {
         const memberToNameJid = toUserJid(baileysMessage?.key?.participant);
         const memberNameNumber = onlyNumbers(memberToNameJid);
         const groupMetadata = (await bot.groupMetadata(remoteJid));
-
-        const userJsonPath = `${JSON_DIR}/group/${remoteJid}.json`;
+        const groupJsonPath = `${JSON_DIR}/group/${remoteJid}.json`;
         let groupPremium = false;
 
         try {
-            if (fs.existsSync(userJsonPath)) {
-                const jsonData = fs.readFileSync(userJsonPath, 'utf-8');
+            if (fs.existsSync(groupJsonPath)) {
+                const jsonData = fs.readFileSync(groupJsonPath, 'utf-8');
                 const data = JSON.parse(jsonData);
                 if (data.premium) {
                     groupPremium = data.premium;
