@@ -43,7 +43,7 @@ module.exports = {
 │ 
 │─ *Grupo:* ${groupMetadata?.subject}
 │─ *Integrantes:* ${groupMetadata?.participants?.length}
-│─ *Premium:* ${getPremiumStatus(memberToNameJid)}
+│─ *Premium:* ${getPremiumStatus(remoteJid)}
 │
 ╰─「${date.toLocaleDateString("pt-br")} às ${date.toLocaleTimeString("pt-br")}」
         `);
