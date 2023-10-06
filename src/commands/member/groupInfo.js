@@ -56,14 +56,14 @@ module.exports = {
             const image = await bot.profilePictureUrl(remoteJid, "image");
             imageBuffer = await getBuffer(image);
             await bot.sendMessage(remoteJid,
-                { image: imageBuffer, caption: groupInfos },
+                { image: imageBuffer, caption: groupInfos, mentions: [memberToNameJid]  },
                 { quoted: JSON.parse(JSON.stringify(baileysMessage)) },
             );
         } catch (error) {
             console.error(error);
             imageBuffer = await path.resolve(`${IMAGES_DIR}/default.jpg`);
             await bot.sendMessage(remoteJid,
-                { image: { url: imageBuffer }, caption: groupInfos },
+                { image: { url: imageBuffer }, caption: groupInfos, mentions: [memberToNameJid]  },
                 { quoted: JSON.parse(JSON.stringify(baileysMessage)) },
             );
         }
