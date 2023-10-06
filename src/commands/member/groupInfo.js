@@ -41,7 +41,7 @@ module.exports = {
         const groupInfos = (`
 ╭─「@${memberNameNumber} | ${groupPremium ? "🅿️" : ""}」
 │ 
-│─ *Grupo:* ${groupMetadata?.subject}}  
+│─ *Grupo:* ${groupMetadata?.subject}
 │─ *Integrantes:* ${groupMetadata?.participants?.length}
 │─ *Premium:* ${getPremiumStatus(memberToNameJid)}
 │
