@@ -2,7 +2,7 @@ const { IMAGES_DIR, JSON_DIR } = require("../../config");
 const { toUserJid, onlyNumbers } = require("../../utils");
 const { getRandomPrefix } = require("../../services/prefixService");
 const { getBuffer } = require("../../services/imageService");
-const { getPremiumStatus } = require("../../services/premiumService");
+const { getUserPremiumStatus } = require("../../services/premiumService");
 const path = require("path");
 const fs = require("fs");
 
@@ -72,7 +72,7 @@ module.exports = {
 │─ *Telefone:* +${memberNameNumber}
 │─ *Grupo*: ${groupMetadata?.subject}
 │─ *Cargo no Grupo:* ${participantRole}
-│─ *Premium:* ${getPremiumStatus(memberToNameJid)}
+│─ *Premium:* ${getUserPremiumStatus(memberToNameJid)}
 │─ *Solarcoins:* ${formattedCoins}
 │
 ╰─「${date.toLocaleDateString("pt-br")} às ${date.toLocaleTimeString("pt-br")}」
