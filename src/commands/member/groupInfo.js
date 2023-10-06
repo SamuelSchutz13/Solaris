@@ -7,9 +7,9 @@ const path = require("path");
 const fs = require("fs");
 
 module.exports = {
-    name: "user",
+    name: "groupInfo",
     description: "Consulta algumas informações do grupo",
-    commands: ["group", "group"],
+    commands: ["groupInfo", "groupInfo", "groupinfo"],
     usage: `${getRandomPrefix()}group`,
     handle: async ({
         sendSuccessReact,

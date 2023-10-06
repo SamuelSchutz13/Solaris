@@ -129,7 +129,7 @@ module.exports = {
 ▢ Gera um CPF aleatório
 ▢ Uso: ${getRandomPrefix()}cpf   
 ▢
-▢ *Group?*
+▢ *GroupInfo?*
 ▢ Mostra informações relacionadas ao grupo
 ▢ Uso: ${getRandomPrefix()}group   
 ▢
