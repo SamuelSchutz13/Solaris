@@ -23,24 +23,33 @@ exports.checkPermission = async ({
     const isOwner = participant.id === owner || participant.admin === "superadmin";
     const isAdmin = participant.admin === "admin";
 
-    let isPremium = false; 
+    let isUserPremium = false; 
+    let isGroupPremium = false;
     const debitCoins = parseInt(`${COINS_COST}`);
     const userJsonPath = `${JSON_DIR}/user/${userJid.split('@')[0]}.json`;
+    const groupJsonPath = `${JSON_DIR}/group/${remoteJid}.json`;
 
     if (fs.existsSync(userJsonPath)) {
         const userData = JSON.parse(fs.readFileSync(userJsonPath));
         if (userData.premium && userData.premium === true) {
-            isPremium = true;
+            isUserPremium = true;
         } else if (userData.premium === false && userData.coins && userData.coins >= `${COINS_COST}`) {
             userData.coins -= debitCoins; 
             fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2));
-            isPremium = true;
+            isUserPremium = true;
 
             const solankMessage = solankService(userData, debitCoins, baileysMessage);
             await sendReply("Abrindo Solank... O seu banco Robótico");
             setTimeout(async () => {
                 await sendReply(solankMessage);
             }, 1000);
+        }
+    }
+
+    if (fs.existsSync(groupJsonPath)) {
+        const groupData = JSON.parse(fs.readFileSync(groupJsonPath));
+        if (groupData.premium && groupData.premium === true) {
+            isGroupPremium = true;
         }
     }
 
@@ -57,7 +66,7 @@ exports.checkPermission = async ({
     }
 
     if (type === "premium") {
-        return isPremium || isDev;
+        return isGroupPremium || isUserPremium || isDev;
     }
 
     return false;

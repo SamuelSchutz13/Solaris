@@ -18,7 +18,10 @@ module.exports = {
 *Como comprar?* 
 _Basta fazer um pix para o desenvolvedor ${DEV_NAME}, no qual irá ativar o premium ao seu usuário em um prazo de até 1 hora após o envio do comprovante._
 
-*Premium?* 
+*Premium Grupo?* 
+_Você pode comprar o acesso premium por *R$29,90*. Ao comprar o premium, você pode utilizar quantos comandos pagos por 1 mês._
+
+*Premium Usuário?* 
 _Você pode comprar o acesso premium por *R$9,90*. Ao comprar o premium, você pode utilizar quantos comandos pagos por 1 mês._
 
 *Solarcoins?*

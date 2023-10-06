@@ -44,6 +44,7 @@ module.exports = {
 ▢ • ${getRandomPrefix()}copyPaste-search
 ▢ • ${getRandomPrefix()}couple
 ▢ • ${getRandomPrefix()}cpf
+▢ • ${getRandomPrefix()}group
 ▢ • ${getRandomPrefix()}morseDecode
 ▢ • ${getRandomPrefix()}morseEncode
 ▢ • ${getRandomPrefix()}personalizedChance

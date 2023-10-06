@@ -128,6 +128,11 @@ module.exports = {
 ▢ *CPF?*
 ▢ Gera um CPF aleatório
 ▢ Uso: ${getRandomPrefix()}cpf   
+▢
+▢ *Group?*
+▢ Mostra informações relacionadas ao grupo
+▢ Uso: ${getRandomPrefix()}group   
+▢
 ▢ *MorseDecode?*
 ▢ Descodifica uma mensagem em morse
 ▢ Uso: ${getRandomPrefix()}morse-decode <mensagem>
