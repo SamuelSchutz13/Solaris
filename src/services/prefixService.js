@@ -1,10 +1,9 @@
 const { JSON_DIR } = require("../config");
 const fs = require("fs");
 
-exports.getPremiumStatus = (memberJid, groupJid) => {
+exports.getPremiumStatus = (memberJid, remoteJid) => {
     const userFilePath = `${JSON_DIR}/user/${memberJid.split('@')[0]}.json`;
-    const groupNumber = groupJid.split('@')[0];
-    const groupFilePath = `${JSON_DIR}/group/${groupNumber}.json`;
+    const groupFilePath = `${JSON_DIR}/group/${remoteJid}.json`;
 
     let userPremiumStatus = "Inativo";
     let groupPremiumStatus = "Inativo";
