@@ -1,7 +1,7 @@
 {
     "name": "solaris-bot",
     "version": "1.0.0",
-    "description": "Um para o WhatsApp",
+    "description": "Um bot para o WhatsApp",
     "main": "index.js",
     "scripts": {
         "start": "node ./src/index",
