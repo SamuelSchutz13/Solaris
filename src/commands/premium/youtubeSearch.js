@@ -8,7 +8,6 @@ module.exports = {
     usage: `${getRandomPrefix()}youtubeSearch`,
     handle: async ({
         sendSuccessReact,
-
         sendWarningReact,
         sendWarningReply,
         sendWaitReply,
