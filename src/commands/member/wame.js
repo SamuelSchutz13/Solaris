@@ -9,10 +9,13 @@ module.exports = {
         sendSuccessReact,
         sendSuccessReply,
         sendWaitReply,
+        sendWarningReply,
+        sendWarningReact,
         args,
     }) => {
         if (args.length !== 1 || isNaN(args[0])) {
-            await sendSuccessReply("Por favor, insira apenas um número válido.");
+            await sendWarningReact();
+            await sendWarningReply("Por favor, insira apenas um número válido.");
             return;
         }
 
