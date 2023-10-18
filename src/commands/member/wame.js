@@ -11,6 +11,11 @@ module.exports = {
         sendWaitReply,
         args,
     }) => {
+        if (args.length !== 1 || isNaN(args[0])) {
+            await sendSuccessReply("Por favor, insira apenas um número válido.");
+            return;
+        }
+
         await sendWaitReply();
         await sendSuccessReact();
         await sendSuccessReply(`wa.me/${args[0]}`);
