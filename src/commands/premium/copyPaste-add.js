@@ -63,6 +63,6 @@ module.exports = {
         
         await sendWaitReply();
         await sendSuccessReact();
-        await sendSuccessReply(`A pasta ${nextID}. *${title}* foi adicionada com sucesso no grupo!`);
+        await sendSuccessReply(`A pasta ${nextID}. *${title}* foi adicionada com sucesso!`);
     },
 };
