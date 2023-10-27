@@ -1,6 +1,3 @@
-const { getRandomPrefix } = require("../../services/prefixService");
-const { mentionUser } = require("../../services/mentionService");
-
 module.exports = {
     name: "top3",
     description: "Top3 membros alguma coisa do grupo",
@@ -24,15 +21,17 @@ module.exports = {
             return;
         }
 
-        if(!args[0]) {
+        if (!args[0]) {
             await sendWarningReact();
             await sendWarningReply("Você precisa informar o que deseja saber o top3");
+            return;
         }
 
-        const topMembers = getRandomTop3(participants);
+        const topMembers = getRandomTop3(participants, BOT_NUMBER); 
+
         const top3Args = args[0].toLowerCase(); 
 
-            const top3Text = `Top3 membros *${top3Args}* do grupo ${metadata.subject}:
+        const top3Text = `Top3 membros *${top3Args}* do grupo ${metadata.subject}:
 1 - 🥇. ${mentionUser(topMembers[0])}
 2 - 🥈. ${mentionUser(topMembers[1])}
 3 - 🥉. ${mentionUser(topMembers[2])}`;
@@ -43,22 +42,13 @@ module.exports = {
     },
 };
 
-function getRandomTop3(participants) {
-    const randomIndex1 = Math.floor(Math.random() * participants.length);
-    let randomIndex2 = Math.floor(Math.random() * participants.length);
-    let randomIndex3 = Math.floor(Math.random() * participants.length);
-
-    while(randomIndex1 === randomIndex2) {
-        randomIndex1 = Math.floor(Math.random() * participants.length);
+function getRandomTop3(participants, excludeNumber) {
+    const randomIndices = [];
+    while (randomIndices.length < 3) {
+        const randomIndex = getRandomIndex(participants, randomIndices);
+        if (participants[randomIndex].jid !== excludeNumber) {
+            randomIndices.push(randomIndex);
+        }
     }
-
-    while(randomIndex2 === randomIndex3) {
-        randomIndex2 = Math.floor(Math.random() * participants.length);
-    }
-
-    while(randomIndex1 === randomIndex3) {
-        randomIndex3 = Math.floor(Math.random() * participants.length);
-    }
-
-    return [participants[randomIndex1], participants[randomIndex2], participants[randomIndex3]];
+    return randomIndices.map(index => participants[index]);
 }
