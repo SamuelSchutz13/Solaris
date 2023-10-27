@@ -27,7 +27,7 @@ module.exports = {
 
                 if (userData.coins >= 2) {
                     userData.coins -= 2;
-                    solarcoinData.coins += 2;
+                    solarcoinData.coins = (solarcoinData.coins || 0) + 2; // Adicione este trecho
 
                     fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2));
                     fs.writeFileSync(solarcoinDataPath, JSON.stringify(solarcoinData, null, 2));
@@ -53,7 +53,7 @@ module.exports = {
 │ 
 ╰─────────────────
 
-Você gastou 2 solarcoins. Agora você tem ${userData.coins} solarcoins em sua conta
+Você gastou 2 solarcoins. Agora você tem ₹${userData.coins} solarcoins em sua conta
                     `);
                 } else {
                     await sendWaitReply();

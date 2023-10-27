@@ -26,7 +26,7 @@ module.exports = {
                 await sendReply(`*Solank*
                 
 *Usuário Gerente:* ${baileysMessage.pushName}
-*Cofre do Solank:* ${totalSolarcoins} Solarcoins
+*Cofre do Solank:* ₹${totalSolarcoins} Solarcoins
                 `);
             } catch (error) {
                 console.error(error);
@@ -41,4 +41,3 @@ module.exports = {
 function formatNumberWithCommas(number) {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
-

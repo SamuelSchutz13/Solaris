@@ -26,7 +26,7 @@ _Você pode comprar o acesso premium por *R$9,90*. Ao comprar o premium, o grupo
 
 *Solarcoins?*
 _Os comandos premium poderão ser utilizados com Colarcoins, que podem ser adquiridos através dos games ou comprando._
-*Obs:* _Cada comando premium custa 5 Solarcoin, e cada Solarcoin custa 1 Centavo._
+*Obs:* _Cada comando premium custa ₹5 Solarcoin, e cada Solarcoin custa 1 Centavo._
 
 *Pix* - _Chave Aleatória_
 ${PIX_KEY}
