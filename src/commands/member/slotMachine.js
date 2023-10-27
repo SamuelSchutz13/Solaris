@@ -1,4 +1,7 @@
 const { getRandomPrefix } = require("../../services/prefixService");
+const { toUserJid, onlyNumbers } = require("../../utils");
+const fs = require("fs");
+const { JSON_DIR } = require("../../config");
 
 module.exports = {
     name: "machine",
@@ -58,7 +61,7 @@ Você gastou 2 solarcoins. Agora você tem ${userData.coins} solarcoins em sua c
             }
         } else {
             await sendWaitReply();
-            await sendReply("Você não está registrado como um usuário");
+            await sendReply("Você não está registrado como um usuário de o comando /check");
         }
     },
     
