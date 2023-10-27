@@ -66,7 +66,7 @@ exports.checkPermission = async ({
     }
 
     if (type === "premium") {
-        return isGroupPremium || isUserPremium || isDev;
+        return isGroupPremium || isUserPremium;
     }
 
     return false;
