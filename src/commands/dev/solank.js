@@ -8,10 +8,11 @@ module.exports = {
     commands: ["solank"],
     usage: `${getRandomPrefix()}solank`,
     handle: async ({
+        baileysMessage,
         sendWarningReply,
         sendWarningReact,
         sendSuccessReact, 
-        sendSuccessReply,
+        sendReply,
     }) => {
         const solarcoinDataPath = `${JSON_DIR}/solank/safe.json`;
 
@@ -19,10 +20,14 @@ module.exports = {
             try {
                 const solarcoinData = JSON.parse(fs.readFileSync(solarcoinDataPath, 'utf-8'));
 
-                const totalSolarcoins = solarcoinData.coins;
+                const totalSolarcoins = solarcoinData.coins.toLocaleString('pt-BR');
                 
                 await sendSuccessReact();
-                await sendSuccessReply(`o banco Solank tem: *${totalSolarcoins}* solarcoins`);
+                await sendReply(`*Solank*
+                
+Usuário Gerente: ${baileysMessage.pushname}
+Cofre do Solank: ${totalSolarcoins} Solarcoins
+                `);
             } catch (error) {
                 console.error(error);
             }
