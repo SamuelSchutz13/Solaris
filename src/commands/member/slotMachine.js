@@ -3,6 +3,10 @@ const { getRandomPrefix } = require("../../services/prefixService");
 const { toUserJid, onlyNumbers } = require("../../utils");
 const { JSON_DIR } = require("../../config");
 
+const formatNumber = (number) => {
+    return number.toLocaleString('pt-BR');
+};
+
 module.exports = {
     name: "machine",
     description: "Gire o caça niquel no Bot",
@@ -27,7 +31,8 @@ module.exports = {
 
                 if (userData.coins >= 2) {
                     userData.coins -= 2;
-                    solarcoinData.coins = (solarcoinData.coins || 0) + 2; // Adicione este trecho
+
+                    solarcoinData.coins = formatNumber((parseInt(solarcoinData.coins.replace(/\./g, '')) || 0) + 2);
 
                     fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2));
                     fs.writeFileSync(solarcoinDataPath, JSON.stringify(solarcoinData, null, 2));
@@ -42,6 +47,9 @@ module.exports = {
                         resultado = "Você ganhou";
                     }
 
+                    const formattedUserCoins = formatNumber(userData.coins);
+                    const formattedSolarcoins = formatNumber(solarcoinData.coins);
+
                     await sendWaitReply();
                     await sendSuccessReact();
                     await sendReply(`
@@ -53,7 +61,7 @@ module.exports = {
 │ 
 ╰─────────────────
 
-Você gastou 2 solarcoins. Agora você tem ₹${userData.coins} solarcoins em sua conta
+Você gastou 2 solarcoins. Agora você tem ${formattedUserCoins} Solarcoins em sua conta.
                     `);
                 } else {
                     await sendWaitReply();
