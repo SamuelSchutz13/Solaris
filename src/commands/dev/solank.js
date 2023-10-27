@@ -20,13 +20,13 @@ module.exports = {
             try {
                 const solarcoinData = JSON.parse(fs.readFileSync(solarcoinDataPath, 'utf-8'));
 
-                const totalSolarcoins = solarcoinData.coins.toLocaleString('pt-BR');
+                const totalSolarcoins = formatNumberWithCommas(solarcoinData.coins);
                 
                 await sendSuccessReact();
                 await sendReply(`*Solank*
                 
-Usuário Gerente: ${baileysMessage.pushname}
-Cofre do Solank: ${totalSolarcoins} Solarcoins
+*Usuário Gerente:* ${baileysMessage.pushName}
+*Cofre do Solank:* ${totalSolarcoins} Solarcoins
                 `);
             } catch (error) {
                 console.error(error);
@@ -37,3 +37,8 @@ Cofre do Solank: ${totalSolarcoins} Solarcoins
         }
     },
 };
+
+function formatNumberWithCommas(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
