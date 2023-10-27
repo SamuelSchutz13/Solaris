@@ -7,7 +7,6 @@
         "start": "node ./src/index",
         "start:debug": "node ./src/index | pino-pretty",
         "start:build": "pm2 start ./src/index.js --name solaris-bot",
-        "start:build:timer": "pm2 start ./src/index.js --name solaris-bot --max 54000",
         "restart:build": "pm2 restart ./src/index.js --name solaris-bot",
         "stop:build": "pm2 stop ./src/index.js --name solaris-bot",
         "monitor:build": "pm2 monitor ./src/index.js --name solaris-bot"
