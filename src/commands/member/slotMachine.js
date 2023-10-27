@@ -48,7 +48,6 @@ module.exports = {
                     }
 
                     const formattedUserCoins = formatNumber(userData.coins);
-                    const formattedSolarcoins = formatNumber(solarcoinData.coins);
 
                     await sendWaitReply();
                     await sendSuccessReact();
