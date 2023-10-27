@@ -6,7 +6,7 @@ const { JSON_DIR } = require("../../config");
 module.exports = {
     name: "machine",
     description: "Gire o caça niquel no Bot",
-    commands: ["slotMachine","slotmachine", "caça-niquel"],
+    commands: ["slotMachine", "slot-machine","slotmachine", "caça-niquel"],
     usage: `${getRandomPrefix()}slotMachine`,
     handle: async ({
         sendSuccessReact, 
