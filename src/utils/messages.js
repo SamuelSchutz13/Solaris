@@ -1,5 +1,7 @@
-const { BOT_NAME, PREFIX1, PREFIX2, PREFIX3, DEV_NAME, BOT_VERSION } = require("../config");
+const { JSON_DIR, BOT_NAME, PREFIX1, PREFIX2, PREFIX3, DEV_NAME, BOT_VERSION } = require("../config");
 const { getRandomPrefix } = require("../services/prefixService");
+const { toUserJid, onlyNumbers } = require("../utils");
+const fs = require("fs");
 
 const menuMessage = (
     groupMeta, 
@@ -7,6 +9,22 @@ const menuMessage = (
     baileysMessage,
 ) => {
     const date = new Date();
+
+    const memberToNameJid = toUserJid(baileysMessage?.key?.participant);
+    const memberNameNumber = onlyNumbers(memberToNameJid);
+    const userJsonPath = `${JSON_DIR}/user/${memberNameNumber}.json`;
+    let userSurname = baileysMessage.pushName;
+
+    if (fs.existsSync(userJsonPath)) {
+        const jsonData = fs.readFileSync(userJsonPath, 'utf-8');
+        const data = JSON.parse(jsonData);
+        
+        if (data.surname) {
+            userSurname = data.surname; 
+        } else {
+            userSurname = baileysMessage?.pushName; 
+        }
+    }
 
     return `
 ╭━━⪩ *${BOT_NAME}* ⪨━━
@@ -16,7 +34,7 @@ const menuMessage = (
 ▢ • *Data de Criação:* ${dateGroupCreated}
 ▢ • *Data de Hoje:* ${date.toLocaleDateString("pt-br")}
 ▢ • *Horário:* ${date.toLocaleTimeString("pt-br")}
-▢ • *Solicitado por:* ${baileysMessage.pushName}
+▢ • *Solicitado por:* ${userSurname}
 ▢ • *Prefixo de Comandos:* ${PREFIX1} ${PREFIX2} ${PREFIX3}
 ▢
 ▢ • ★ = Comandos _Premium_
