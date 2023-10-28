@@ -11,7 +11,7 @@ function solankService(userData, debitCoins, baileysMessage) {
 │─ *Saldo:* ${userData.coins}
 │─ *Cartão:* _Em Breve_
 │
-╰─「_*₹${debitCoins}* Solarcoins debitadas_」
+╰─「_${debitCoins}* Solarcoins debitadas_」
     `;
 }
 
