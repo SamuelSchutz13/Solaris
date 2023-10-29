@@ -69,7 +69,7 @@ module.exports = {
                 remoteJid,
                 {
                     image: { url: imageBuffer },
-                    caption: `@${memberToNumber} foram adicionados ${debitCoins} Solarcoins em sua conta`,
+                    caption: `@${memberToNumber} foram adicionados *${debitCoins}* Solarcoins em sua conta`,
                     mentions: [memberToJid],
                 },
                 { quoted: JSON.parse(JSON.stringify(baileysMessage)) }

@@ -60,7 +60,7 @@ module.exports = {
 │ 
 ╰─────────────────
 
-Você gastou 2 solarcoins. Agora você tem ${formattedUserCoins} Solarcoins em sua conta.
+Você gastou 2 solarcoins. Agora você tem *${formattedUserCoins}* Solarcoins em sua conta.
                     `);
                 } else {
                     await sendWaitReply();
@@ -71,7 +71,7 @@ Você gastou 2 solarcoins. Agora você tem ${formattedUserCoins} Solarcoins em s
             }
         } else {
             await sendWaitReply();
-            await sendReply("Você não está registrado como um usuário ou o arquivo de dados de solarcoin não existe");
+            await sendReply("Você não está registrado como um usuário execute o comando /check para se registrar");
         }
     },
 };

@@ -33,16 +33,18 @@ exports.checkPermission = async ({
         const userData = JSON.parse(fs.readFileSync(userJsonPath));
         if (userData.premium && userData.premium === true) {
             isUserPremium = true;
-        } else if (userData.premium === false && userData.coins && userData.coins >= `${COINS_COST}`) {
-            userData.coins -= debitCoins; 
-            fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2));
-            isUserPremium = true;
+        } else if (userData.premium === false && userData.coins && userData.coins >= COINS_COST) {
+            if (type === "premium") {
+                userData.coins -= COINS_COST; 
+                fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2));
+                isUserPremium = true;
 
-            const solankMessage = solankService(userData, debitCoins, baileysMessage);
-            await sendReply("Abrindo Solank... O seu banco Robótico");
-            setTimeout(async () => {
-                await sendReply(solankMessage);
-            }, 1000);
+                const solankMessage = solankService(userData, COINS_COST, baileysMessage);
+                await sendReply("Abrindo Solank... O seu banco Robótico");
+                setTimeout(async () => {
+                    await sendReply(solankMessage);
+                }, 1000);
+            }
         }
     }
 
