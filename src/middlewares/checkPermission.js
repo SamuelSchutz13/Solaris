@@ -25,7 +25,6 @@ exports.checkPermission = async ({
 
     let isUserPremium = false; 
     let isGroupPremium = false;
-    const debitCoins = parseInt(`${COINS_COST}`);
     const userJsonPath = `${JSON_DIR}/user/${userJid.split('@')[0]}.json`;
     const groupJsonPath = `${JSON_DIR}/group/${remoteJid}.json`;
 
