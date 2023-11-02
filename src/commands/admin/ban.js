@@ -35,12 +35,6 @@ module.exports = {
                 throw new InvalidParameterError("Número inválido!");
             }
 
-            const isMemberInGroup = participants.find(participant => participant.jid === memberToRemoveJid);
-
-            if (args.length !== isMemberInGroup) {
-                throw new InvalidParameterError(`O membro não está no grupo`);
-            }
-
             if(memberToRemoveJid === userJid) {
                 throw new DangerError("Você não pode remover você mesmo!");
             }
