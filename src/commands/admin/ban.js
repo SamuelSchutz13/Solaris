@@ -35,6 +35,12 @@ module.exports = {
                 throw new InvalidParameterError("Número inválido!");
             }
 
+            const isMemberInGroup = participants.find(participant => participant.jid === memberToRemoveJid);
+
+            if (args.length !== isMemberInGroup) {
+                throw new InvalidParameterError(`O membro não está no grupo`);
+            }
+
             if(memberToRemoveJid === userJid) {
                 throw new DangerError("Você não pode remover você mesmo!");
             }
@@ -44,7 +50,7 @@ module.exports = {
             if(memberToRemoveJid === botJid) {
                 throw new DangerError("Você não pode me remover!");
             }
-
+            
             const groupMetaData = (await bot.groupMetadata(remoteJid));
             let imageBuffer;
 
