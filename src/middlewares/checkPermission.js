@@ -1,11 +1,10 @@
-const { JSON_DIR, DEV_ID, COINS_COST } = require('../config');
-const { solankService } = require("../services/solankService");
-const fs = require('fs');
+const { processUserPremium } = require('../services/premiumPermissionService'); 
+const { DEV_ID } = require('../config');
 
-exports.checkPermission = async ({ 
-    type, 
-    bot, 
-    userJid, 
+exports.checkPermission = async ({
+    type,
+    bot,
+    userJid,
     remoteJid,
     sendReply,
     baileysMessage,
@@ -19,40 +18,11 @@ exports.checkPermission = async ({
         return true;
     }
 
-    const isDev = participant.id === `${DEV_ID}`;
+    const isDev = participant.id === DEV_ID; 
+    const { isUserPremium, isGroupPremium } = await processUserPremium(userJid, remoteJid, type, baileysMessage, sendReply);
+
     const isOwner = participant.id === owner || participant.admin === "superadmin";
     const isAdmin = participant.admin === "admin";
-
-    let isUserPremium = false; 
-    let isGroupPremium = false;
-    const userJsonPath = `${JSON_DIR}/user/${userJid.split('@')[0]}.json`;
-    const groupJsonPath = `${JSON_DIR}/group/${remoteJid}.json`;
-
-    if (fs.existsSync(userJsonPath)) {
-        const userData = JSON.parse(fs.readFileSync(userJsonPath));
-        if (userData.premium && userData.premium === true) {
-            isUserPremium = true;
-        } else if (userData.premium === false && userData.coins && userData.coins >= COINS_COST) {
-            if (type === "premium") {
-                userData.coins -= COINS_COST; 
-                fs.writeFileSync(userJsonPath, JSON.stringify(userData, null, 2));
-                isUserPremium = true;
-
-                const solankMessage = solankService(userData, COINS_COST, baileysMessage);
-                await sendReply("Abrindo Solank... O seu banco Robótico");
-                setTimeout(async () => {
-                    await sendReply(solankMessage);
-                }, 1000);
-            }
-        }
-    }
-
-    if (fs.existsSync(groupJsonPath)) {
-        const groupData = JSON.parse(fs.readFileSync(groupJsonPath));
-        if (groupData.premium && groupData.premium === true) {
-            isGroupPremium = true;
-        }
-    }
 
     if (type === "dev") {
         return isDev;
