@@ -40,7 +40,7 @@ module.exports = {
 *Sueco:* sv
 *Turco:* tr
             `);
-          
+
             const utils = new Utils();
             const languages = [
                 {

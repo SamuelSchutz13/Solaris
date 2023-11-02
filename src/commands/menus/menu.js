@@ -1,4 +1,4 @@
-const { AUDIOS_DIR, IMAGES_DIR, BOT_VERSION  } = require("../../config");
+const { AUDIOS_DIR, IMAGES_DIR } = require("../../config");
 const { menuMessage } = require("../../utils/messages");
 const { getBuffer } = require("../../services/imageService");
 const { getRandomPrefix } = require("../../services/prefixService");

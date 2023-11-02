@@ -1,7 +1,6 @@
 const { getRandomPrefix } = require("../../services/prefixService");
 const { mentionUser } = require("../../services/mentionService");
 
-
 module.exports = {
     name: "couple",
     description: "Irá formar um casal entre os membros do grupo",

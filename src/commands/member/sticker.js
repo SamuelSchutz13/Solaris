@@ -3,7 +3,6 @@ const { InvalidParameterError } = require("../../errors/InvalidParameterError");
 const { downloadContentFromMessage } = require("@whiskeysockets/baileys");
 const { StickerTypes, Sticker } = require("wa-sticker-formatter");
 const { getRandomPrefix } = require("../../services/prefixService");
-const fs = require("fs");
 
 module.exports = {
     name: "sticker",
