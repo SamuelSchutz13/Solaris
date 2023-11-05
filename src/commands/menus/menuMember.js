@@ -1,4 +1,4 @@
-const { PREFIX1, PREFIX2, PREFIX3, BOT_NAME, DEV_NAME, AUDIOS_DIR, IMAGES_DIR, BOT_VERSION } = require("../../config");
+const { PREFIX1, PREFIX2, PREFIX3, PREFIX4, BOT_NAME, DEV_NAME, AUDIOS_DIR, IMAGES_DIR, BOT_VERSION } = require("../../config");
 const { getBuffer } = require("../../services/imageService");
 const { getRandomPrefix } = require("../../services/prefixService");
 const path = require("path");
@@ -29,7 +29,7 @@ module.exports = {
 ▢ • *Data de Criação:* ${dateGroupCreated}
 ▢ • *Data de Hoje:* ${date.toLocaleDateString("pt-br")}
 ▢ • *Horário:* ${date.toLocaleTimeString("pt-br")}
-▢ • *Prefixo de Comandos:* ${PREFIX1} ${PREFIX2} ${PREFIX3}
+▢ • *Prefixo de Comandos:* ${PREFIX1} ${PREFIX2} ${PREFIX3} ${PREFIX4}
 ▢
 ▢
 ╰━━─「🪐」─━━

@@ -3,9 +3,10 @@ const path = require("path");
 exports.PREFIX1 = "$";
 exports.PREFIX2 = "#";
 exports.PREFIX3 = "/";
+exports.PREFIX4 = "!";
 
 exports.BOT_EMOJI = "🤖";
-exports.BOT_VERSION = "1.0.0";
+exports.BOT_VERSION = "1.0.1";
 exports.BOT_NAME = "Solaris Bot";
 exports.BOT_NUMBER = "37259022954";
 

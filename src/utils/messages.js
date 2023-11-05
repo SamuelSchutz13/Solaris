@@ -1,4 +1,4 @@
-const { JSON_DIR, BOT_NAME, PREFIX1, PREFIX2, PREFIX3, DEV_NAME, BOT_VERSION } = require("../config");
+const { JSON_DIR, BOT_NAME, PREFIX1, PREFIX2, PREFIX3, PREFIX4, DEV_NAME, BOT_VERSION, PREFIX4 } = require("../config");
 const { getRandomPrefix } = require("../services/prefixService");
 const { toUserJid, onlyNumbers } = require("../utils");
 const fs = require("fs");
@@ -35,7 +35,7 @@ const menuMessage = (
 ▢ • *Data de Hoje:* ${date.toLocaleDateString("pt-br")}
 ▢ • *Horário:* ${date.toLocaleTimeString("pt-br")}
 ▢ • *Solicitado por:* ${userSurname}
-▢ • *Prefixo de Comandos:* ${PREFIX1} ${PREFIX2} ${PREFIX3}
+▢ • *Prefixo de Comandos:* ${PREFIX1} ${PREFIX2} ${PREFIX3} ${PREFIX4}
 ▢
 ▢ • ★ = Comandos _Premium_
 ▢
