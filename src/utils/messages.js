@@ -1,4 +1,4 @@
-const { JSON_DIR, BOT_NAME, PREFIX1, PREFIX2, PREFIX3, PREFIX4, DEV_NAME, BOT_VERSION, PREFIX4 } = require("../config");
+const { JSON_DIR, BOT_NAME, PREFIX1, PREFIX2, PREFIX3, PREFIX4, DEV_NAME, BOT_VERSION } = require("../config");
 const { getRandomPrefix } = require("../services/prefixService");
 const { toUserJid, onlyNumbers } = require("../utils");
 const fs = require("fs");
