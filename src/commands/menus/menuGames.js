@@ -37,7 +37,6 @@ module.exports = {
 
 ╭━━⪩ *Menu de Games* ⪨━━
 ▢
-▢ • ${getRandomPrefix()}akinator
 ▢ • ${getRandomPrefix()}slotMachine
 ▢
 ╰━━─「🛸」─━━ 
