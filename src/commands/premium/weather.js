@@ -7,11 +7,10 @@ module.exports = {
     commands: ["weather", "tempo"],
     usage: `${getRandomPrefix()}weather São Paulo`,
     handle: async ({
+        sendSuccessReply, 
         sendWarningReply, 
-        bot,
-        remoteJid,
+        sendSuccessReact,
         sendWarningReact,
-        sendSuccessReact, 
         sendWaitReply, 
         args, 
     }) => {
@@ -25,19 +24,17 @@ module.exports = {
 
         await sendWaitReply();
         await sendSuccessReact();
-        await bot.sendMessage(remoteJid, 
-            { caption: 
-`
+        await sendSuccessReply(`*Resultado da Previsão*
+
 *Cidade:* ${data.name}, ${data.sys.country}
 *Tempo:* ${data.weather[0].main} | ${data.weather[0].description}
 *Temperatura:* ${data.main.temp}°C
 *Temperatura Máxima:* ${data.main.temp_max}°C
 *Temperatura Minima:* ${data.main.temp_min}°C
 *Humidade:* ${data.main.humidity}%
-*Vento:* ${data.wind.speed}km/h             
-            `}
-        )
+*Vento:* ${data.wind.speed}km/h     
+        `);
 
-    
     },
 };
+
