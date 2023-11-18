@@ -1,6 +1,6 @@
-export function getWeatherEmoji(weather, currentTime) {
+export function getWeatherEmoji(weather, isDay) {
     const weatherEmojiMap = {
-        'Clear': '☀️',
+        'Clear': isDay ? '☀️' : '🌕',
         'Clouds': '☁️',
         'Rain': '🌧️',
         'Snow': '❄️',
@@ -10,9 +10,5 @@ export function getWeatherEmoji(weather, currentTime) {
         'FewClouds': '🌥️',
     };
 
-    const isMorningOrAfternoon = currentTime >= 6 && currentTime < 18;
-    const isClear = weather === 'Clear';
-    const weatherEmoji = isClear && !isMorningOrAfternoon ? '🌕' : weatherEmojiMap[weather] || '';
-    
-    return weatherEmoji;
+    return weatherEmojiMap[weather] || '';
 }

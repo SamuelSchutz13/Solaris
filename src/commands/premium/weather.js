@@ -26,7 +26,8 @@ module.exports = {
         await sendWaitReply();
         await sendSuccessReact();
 
-        const weatherEmoji = getWeatherEmoji(data.weather[0].main);
+        const isDay = getCurrentTime() >= 6 && getCurrentTime() < 18;
+        const weatherEmoji = getWeatherEmoji(data.weather[0].main, isDay);
 
         await sendSuccessReply(`
 *Cidade:* ${data.name}, ${data.sys.country}
