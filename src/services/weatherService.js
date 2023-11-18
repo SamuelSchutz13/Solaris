@@ -1,4 +1,5 @@
-export function getWeatherEmoji(weather, isDay) {
+
+function getWeatherEmoji(weather, isDay) {
     const weatherEmojiMap = {
         'Clear': isDay ? '☀️' : '🌕',
         'Clouds': '☁️',
@@ -12,3 +13,5 @@ export function getWeatherEmoji(weather, isDay) {
 
     return weatherEmojiMap[weather] || '';
 }
+    
+module.exports = getWeatherEmoji;
