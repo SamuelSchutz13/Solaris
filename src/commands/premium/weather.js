@@ -1,5 +1,6 @@
 const { OPENWEATHER_API_KEY } = require("../../config");
 const { getRandomPrefix } = require("../../services/prefixService");
+const { getWeatherEmojis } = require("../../services/weatherService");
 
 module.exports = {
     name: "openWeather",
@@ -24,13 +25,15 @@ module.exports = {
 
         await sendWaitReply();
         await sendSuccessReact();
-        await sendSuccessReply(`*Resultado da Previsão*
 
+        const weatherEmoji = getWeatherEmoji(data.weather[0].main);
+
+        await sendSuccessReply(`
 *Cidade:* ${data.name}, ${data.sys.country}
-*Tempo:* ${data.weather[0].main} | ${data.weather[0].description}
+*Tempo:* ${weatherEmoji} - _${data.weather[0].description}_
 *Temperatura:* ${data.main.temp}°C
-*Temperatura Máxima:* ${data.main.temp_max}°C
-*Temperatura Minima:* ${data.main.temp_min}°C
+    _Máxima:_ ${data.main.temp_max}°C
+    _Minima:_ ${data.main.temp_min}°C
 *Humidade:* ${data.main.humidity}%
 *Vento:* ${data.wind.speed}km/h     
         `);
