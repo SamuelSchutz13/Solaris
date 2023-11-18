@@ -1,3 +1,6 @@
+export function getCurrentTime() {
+    return new Date().getHours();
+}
 
 function getWeatherEmoji(weather, isDay) {
     const weatherEmojiMap = {
