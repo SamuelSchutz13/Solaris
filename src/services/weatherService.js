@@ -1,4 +1,4 @@
-export function getCurrentTime() {
+function getCurrentTime() {
     return new Date().getHours();
 }
 
@@ -17,4 +17,7 @@ function getWeatherEmoji(weather, isDay) {
     return weatherEmojiMap[weather] || '';
 }
     
-module.exports = getWeatherEmoji;
+module.exports = {
+    getCurrentTime,
+    getWeatherEmoji
+};
