@@ -4,17 +4,18 @@ function getCurrentTime() {
 
 function getWeatherEmoji(weather, isDay) {
     const weatherEmojiMap = {
+        'BrokenClouds': '🌫️',
         'Clear': isDay ? '☀️' : '🌕',
         'Clouds': '☁️',
+        'FewClouds': '🌥️',
+        'Mist': '🌪️',
         'Rain': '🌧️',
         'Snow': '❄️',
-        'Mist': '🌬️',
-        'Thunderstorm': '⛈️',
         'ShowerRain': '🌨️',
-        'FewClouds': '🌥️',
+        'Thunderstorm': '⛈️',
     };
 
-    return weatherEmojiMap[weather] || '';
+    return weatherEmojiMap[weather] || '❔';
 }
     
 module.exports = {
