@@ -1,6 +1,6 @@
 const { OPENWEATHER_API_KEY } = require("../../config");
 const { getRandomPrefix } = require("../../services/prefixService");
-const { getWeatherEmojis } = require("../../services/weatherService");
+const { getWeatherEmoji } = require("../../services/weatherService");
 
 module.exports = {
     name: "openWeather",
