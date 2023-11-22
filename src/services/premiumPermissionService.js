@@ -29,7 +29,6 @@ const processUserPremium = async (userJid, remoteJid, type, baileysMessage, send
 
     if (fs.existsSync(groupJsonPath)) {
         const groupData = JSON.parse(fs.readFileSync(groupJsonPath));
-        // Check if group is premium
         if (groupData.premium === true) {
             isGroupPremium = true;
         }
