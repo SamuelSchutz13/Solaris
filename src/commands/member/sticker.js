@@ -1,8 +1,11 @@
-const { DEV_NAME, BOT_NAME } = require("../../config");
+const { DEV_NAME, BOT_NAME, TEMP_DIR } = require("../../config");
 const { InvalidParameterError } = require("../../errors/InvalidParameterError");
 const { downloadContentFromMessage } = require("@whiskeysockets/baileys");
 const { StickerTypes, Sticker } = require("wa-sticker-formatter");
 const { getRandomPrefix } = require("../../services/prefixService");
+const path = require("path");
+const fs = require("fs");
+const { exec } = require("child_process");
 
 module.exports = {
     name: "sticker",
@@ -17,6 +20,7 @@ module.exports = {
         baileysMessage,
         sendWaitReply,
         sendErrorReply,
+        downloadVideo,
         sendSuccessReact,
     }) => {               
         const date = new Date();
@@ -27,6 +31,7 @@ module.exports = {
             );
         }
 
+        const outputPath = path.resolve(TEMP_DIR, "output.webp");
         if(isImage) {
             try {
                 const stream = await downloadContentFromMessage(baileysMessage?.message?.extendedTextMessage?.contextInfo?.viewOnceMessage?.message?.imageMessage 
@@ -54,7 +59,6 @@ module.exports = {
             }
         } else {
             const inputPath = await downloadVideo(webMessage, "input");
-
             const sizeInSeconds = 10;
 
             const seconds =
