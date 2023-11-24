@@ -32,7 +32,7 @@ module.exports = {
             );
         }
 
-        const outputPath = path.resolve(TEMP_DIR, "output.webp");
+        const outputPath = path.resolve(TEMP_DIR, `${baileysMessage?.messageTimestamp}.webp`);
         if(isImage) {
             try {
                 const stream = await downloadContentFromMessage(baileysMessage?.message?.extendedTextMessage?.contextInfo?.viewOnceMessage?.message?.imageMessage 
