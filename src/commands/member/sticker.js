@@ -18,7 +18,6 @@ module.exports = {
         isVideo,
         remoteJid,
         baileysMessage,
-        baileysMessage,
         sendWaitReply,
         sendErrorReply,
         downloadVideo,
