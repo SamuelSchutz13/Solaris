@@ -17,11 +17,13 @@ module.exports = {
         isImage,
         isVideo,
         remoteJid,
+        webMessage,
         baileysMessage,
         sendWaitReply,
         sendErrorReply,
         downloadVideo,
         sendSuccessReact,
+        sendStickerFromFile,
     }) => {               
         const date = new Date();
         
