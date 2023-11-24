@@ -17,7 +17,7 @@ module.exports = {
         isImage,
         isVideo,
         remoteJid,
-        webMessage,
+        baileysMessage,
         baileysMessage,
         sendWaitReply,
         sendErrorReply,
@@ -60,12 +60,12 @@ module.exports = {
                 throw new Error(error);
             }
         } else {
-            const inputPath = await downloadVideo(webMessage, "input");
+            const inputPath = await downloadVideo(baileysMessage, "input");
             const sizeInSeconds = 10;
 
             const seconds =
-                webMessage.message?.videoMessage?.seconds ||
-                webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage ?.videoMessage?.seconds;
+            baileysMessage.message?.videoMessage?.seconds ||
+            baileysMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage ?.videoMessage?.seconds;
 
             const haveSecondsRule = seconds <= sizeInSeconds;
 
