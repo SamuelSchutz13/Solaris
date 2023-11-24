@@ -53,39 +53,36 @@ module.exports = {
                 throw new Error(error);
             }
         } else {
+            const inputPath = await downloadVideo(webMessage, "input");
+
             const sizeInSeconds = 10;
-            
+
             const seconds =
-                baileysMessage.message?.videoMessage?.seconds ||
-                baileysMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage
-                ?.videoMessage?.seconds;
+                webMessage.message?.videoMessage?.seconds ||
+                webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage ?.videoMessage?.seconds;
 
             const haveSecondsRule = seconds <= sizeInSeconds;
 
             if (!haveSecondsRule) {
+                fs.unlinkSync(inputPath);
                 await sendErrorReply(`O vídeo que você enviou tem mais de ${sizeInSeconds} segundos! Envie um vídeo menor!`);
                 return;
             }
 
-            const stream = await downloadContentFromMessage(baileysMessage?.message?.extendedTextMessage?.contextInfo?.viewOnceMessage?.message?.videoMessage 
-                || baileysMessage?.message?.extendedTextMessage?.contextInfo?.quotedMessage?.videoMessage 
-                || baileysMessage?.message?.videoMessage, "video");
-
-                let buffer = Buffer.from([]);
-
-                for await(const chuck of stream) {
-                    buffer = Buffer.concat([buffer, chuck]);
-                }
-
-                const sticker = new Sticker(buffer, {
-                    pack: ` ⚝ ⇝ Solicitado por:\n ⚝ ⇝ Data:\n ⚝ ⇝ Hora:\n ⚝ ⇝ Bot:\n ⚝ ⇝ Dono:`,
-                    author: ` ⚝ ${baileysMessage?.pushName}\n ⚝ ${date.toLocaleDateString("pt-br")}\n ⚝ ${date.toLocaleTimeString("pt-br")}\n ⚝ ${BOT_NAME}\n ⚝ ${DEV_NAME}`,
-                    type: StickerTypes.FULL,
+            exec( `ffmpeg -i ${inputPath} -y -vcodec libwebp -fs 0.99M -filter_complex "[0:v] scale=512:512,fps=12,pad=512:512:-1:-1:color=white@0.0,split[a][b];[a]palettegen=reserve_transparent=on:transparency_color=ffffff[p];[b][p]paletteuse" -f webp ${outputPath}`,
+                async (error) => {
+                    if (error) {
+                        console.log(error);
+                        fs.unlinkSync(inputPath);
+                        throw new Error(error);
+                    }
+        
+                    await sendSuccessReact();
+                    await sendStickerFromFile(outputPath);
+        
+                    fs.unlinkSync(inputPath);
+                    fs.unlinkSync(outputPath);
                 });
-
-                await sendWaitReply();
-                await sendSuccessReact();
-                await bot.sendMessage(remoteJid, await sticker.toMessage());
-        } 
-    },
+            }
+        },
 };
