@@ -43,6 +43,7 @@ const menuMessage = (
 
 ╭━━⪩ *Menus de Comandos* ⪨━━
 ▢
+▢ • ${getRandomPrefix()}superadmin
 ▢ • ${getRandomPrefix()}admin
 ▢ • ${getRandomPrefix()}member
 ▢ • ${getRandomPrefix()}games
@@ -73,6 +74,7 @@ const waitMessages = [
     "Desvendando os segredos da internet...",
     "Dando um CRTL + C e CTRL + V no texto...",
     "Estou enviando, aguarde...",
+    "Previna-se não passe a foto do seu cartão frente e verso para ninguem, tirando eu...",
 ];
 
 function getRandomWaitMessage() {
