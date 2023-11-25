@@ -21,47 +21,27 @@ module.exports = {
         sendWaitReply,
         sendReply,
     }) => {
-        await sendReply(`*Painel de linguagens*
-
-*Africana:* af
-*Árabe:* ar
-*Catalão:* ca
-*Chinês:* ch
-*Inglês:* us
-*Francês:* fr
-*Alemão:* al
-*Húngaro:* hu
-*Italiano:* it
-*Japonês:* jp
-*Coreano:* ko
-*Português:* br
-*Russo:* ru
-*Espanhol:* es
-*Sueco:* sv
-*Turco:* tr
-            `);
-
-            const utils = new Utils();
-            const languages = [
-                {
-                    af: "af",
-                    ar: "ar",
-                    ca: "ca",
-                    ch: "zh",
-                    us: "en",
-                    fr: "fr",
-                    al: "de",
-                    hu: "hu",
-                    it: "it",
-                    jp: "ja",
-                    ko: "ko",
-                    br: "pt-br",
-                    ru: "ru",
-                    es: "es",
-                    sv: "sv",
-                    tr: "tr",
-                },
-            ];
+        const utils = new Utils();
+        const languages = [
+            {
+                af: "af",
+                ar: "ar",
+                ca: "ca",
+                ch: "zh",
+                us: "en",
+                fr: "fr",
+                al: "de",
+                hu: "hu",
+                it: "it",
+                jp: "ja",
+                ko: "ko",
+                br: "pt-br",
+                ru: "ru",
+                es: "es",
+                sv: "sv",
+                tr: "tr",
+            },
+        ];
 
         for(let attr in languages) {
             if (!languages[attr]) {
