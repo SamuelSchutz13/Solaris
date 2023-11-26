@@ -19,7 +19,6 @@ module.exports = {
         sendAudioFromFile,
         baileysMessage,
         sendWaitReply,
-        sendReply,
     }) => {
         const utils = new Utils();
         const languages = [
