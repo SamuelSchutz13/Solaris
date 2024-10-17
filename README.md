@@ -1,6 +1,6 @@
 Bot of Whatsapp made with API Baileys!
 
-How to run?
+# How to run?
 
 Npm:
 
